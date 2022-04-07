@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity()
     {
         binding.imageLogOut.setOnClickListener { signOut()}
         binding.fabNewChat.setOnClickListener{ startActivity(Intent(this,UserListActivity::class.java))}
+        binding.mapButton.setOnClickListener {
+            val intent = Intent(this,MapActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun raiseToast(string : String)
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity()
         val documentReference = db.collection(Constants.KEY_COLLECTION_USERS).document(
             preferenceManager.getString(Constants.KEY_USER_ID).toString()
         )
-        documentReference.update(Constants.KEY_FIRESTORECLOUDMESSAGING_TOKEN,token.toString())
+        documentReference.update(Constants.KEY_FIRESTORECLOUDMESSAGING_TOKEN,token)
             .addOnFailureListener{
                 raiseToast("Failed to update token, exception: "+it.message)
             }

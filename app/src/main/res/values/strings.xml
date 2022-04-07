@@ -13,5 +13,6 @@
     <string name="add_image">Add image</string>
     <string name="please_use_a_picture_of_you">Please use a picture of you :)</string>
     <string name="select_user">Select user</string>
-    <string name="type_a_message">Type a message...</string>
+    <string name="type_a_message">Type a message…</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

@@ -1,8 +1,7 @@
 package com.example.safespace.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.safespace.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.safespace.databinding.ActivityMapBinding
 
 class MapActivity : AppCompatActivity() {
@@ -14,4 +13,11 @@ class MapActivity : AppCompatActivity() {
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
+    private fun setListeners()
+    {
+        binding.imageBack.setOnClickListener { onBackPressed() }
+    }
+
+
 }
