@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--First color scheme-->
+    <color name="beige">#FBD6D2</color>
+    <color name="peach">#F190B7</color>
+    <color name="pink">#CE49BF</color>
+    <color name="purple">#A63EC5</color>
+    <!--Second color scheme-->
+    <color name="bright_beige">#F6E7D8</color> // secondary variant
+    <color name="dark_peach">#F68989</color> //secondary
+    <color name="dark_pink">#C65D7B</color> //primary
+    <color name="maroon">#874356</color> //primary variant
+    <!--End custom color schemes    -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#808080</color>
+</resources>
