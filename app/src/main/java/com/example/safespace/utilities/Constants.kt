@@ -14,9 +14,10 @@ class Constants {
         const val KEY_FIRESTORECLOUDMESSAGING_TOKEN : String = "fcmToken"
         const val KEY_USER : String = "user"
         const val KEY_SENDER_ID : String = "senderId"
-        const val KEY_RECIEVER_ID : String = "recieverId"
+        const val KEY_RECEIVER_ID : String = "recieverId"
         const val KEY_MESSAGE : String = "message"
         const val KEY_TIMESTAMP : String = "timestamp"
+
 
     }
 }

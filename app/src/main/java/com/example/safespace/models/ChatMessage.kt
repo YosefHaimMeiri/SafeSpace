@@ -1,5 +1,6 @@
 package com.example.safespace.models
 
+import com.google.firebase.Timestamp
 import java.util.*
 
 class ChatMessage {
@@ -7,5 +8,5 @@ class ChatMessage {
     lateinit var recieverId : String
     lateinit var message : String
     lateinit var dateTime : String
-    lateinit var dateObject : Date
+    lateinit var dateObject : Timestamp
 }

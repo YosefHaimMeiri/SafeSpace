@@ -12,20 +12,24 @@
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/drawable/ic_backbutton.xml" value="0.143" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/drawable/ic_logout.xml" value="0.143" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/drawable/ic_sent_message.xml" value="0.1" />
+        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/drawable/ic_twotone_pan_tool_24.xml" value="0.1405" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/drawable/image_background.xml" value="0.143" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/drawable/input_background.xml" value="0.143" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_chat.xml" value="0.165" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
-        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_map.xml" value="0.1" />
+        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_map.xml" value="0.125" />
+        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_map_menu.xml" value="0.1" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_maps.xml" value="0.1796875" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_sign_in.xml" value="0.165625" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_sign_up.xml" value="0.1796875" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/activity_user_list.xml" value="0.25" />
-        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/fragment_maps.xml" value="0.1" />
+        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/custom_info_contents.xml" value="0.1796875" />
+        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/fragment_maps.xml" value="0.125" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/fragment_sign_in.xml" value="0.165625" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/ic_recieved_message.xml" value="0.1796875" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/ic_sent_message.xml" value="0.1796875" />
         <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/layout/ic_user.xml" value="0.2813599062133646" />
+        <entry key="..\:/Users/Yossi Meiri/AndroidStudioProjects/SafeSpace/app/src/main/res/menu/current_place_menu.xml" value="0.165" />
       </map>
     </option>
   </component>
