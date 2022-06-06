@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.safespace.bluetooth.BLEService
 import com.example.safespace.databinding.ActivityMainBinding
 import com.example.safespace.utilities.Constants
 import com.example.safespace.utilities.PreferenceManager
@@ -17,8 +18,10 @@ class MainActivity : AppCompatActivity()
 {
     private lateinit var binding : ActivityMainBinding
     private lateinit var preferenceManager : PreferenceManager
+    private var bleService = BLEService()
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        FirebaseFirestore.setLoggingEnabled(true)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,8 +39,15 @@ class MainActivity : AppCompatActivity()
             val intent = Intent(this,MapActivity::class.java)
             startActivity(intent)
         }
+        binding.connectTv.setOnClickListener {
+            startService(Intent(this,BLEService::class.java))
+        }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(this,BLEService::class.java))
+    }
     private fun raiseToast(string : String)
     {
         Toast.makeText(this,string, Toast.LENGTH_SHORT).show()

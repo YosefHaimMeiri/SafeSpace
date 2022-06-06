@@ -129,7 +129,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    private fun alertDanger()
+
+    fun alertDanger()
     {
         val database : FirebaseFirestore = FirebaseFirestore.getInstance()
         val locationHashMap : HashMap<String, Any> = HashMap()
@@ -142,10 +143,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             locationHashMap["longitude"] = east
             database.collection("Alert_places").add(locationHashMap)
             raiseToast("We alerted people near you!")
-
         }
-
-
     }
 
 
