@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        FirebaseMessaging.getInstance().subscribeToTopic("helper");
         preferenceManager = PreferenceManager(this)
         setListeners()
         updateUI()

@@ -4,6 +4,7 @@ class Constants {
     companion object {
         const val KEY_COLLECTION_USERS : String = "/users"
         const val KEY_COLLECTION_CHAT : String = "chat"
+        const val KEY_LOCATIONS : String = "Alert_places"
         const val KEY_NAME : String = "name"
         const val KEY_EMAIL : String = "email"
         const val KEY_PASSWORD : String = "password"
@@ -17,6 +18,7 @@ class Constants {
         const val KEY_RECEIVER_ID : String = "recieverId"
         const val KEY_MESSAGE : String = "message"
         const val KEY_TIMESTAMP : String = "timestamp"
+        const val SERVER_KEY: String = "AAAAOyGfL4c:APA91bEkdZUrPAu6AhsfgrEWQAoSkObBNNjjJ5zbBfd6GrS1DWt_iCpoPQzu2FZkSYsJPOOdXDTz51rYrEO2kWETbf7-MrTqlTxC0a67nQ17dKyxN8mr9X4IPtxLSAtpI7rgpZZjiLuP"
 
 
     }

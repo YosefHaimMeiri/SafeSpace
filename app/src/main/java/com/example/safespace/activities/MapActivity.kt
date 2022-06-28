@@ -18,6 +18,7 @@ import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -26,12 +27,17 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.safespace.BuildConfig
 import com.example.safespace.R
+import com.example.safespace.models.ChatMessage
+import com.example.safespace.utilities.Constants
+import com.example.safespace.utilities.LocationProvider
+import com.example.safespace.utilities.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -48,7 +54,13 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firestore.v1.Document
+import java.time.LocalDateTime
 
 /**
  * An activity that displays a map showing the place at the device's current location.
@@ -56,7 +68,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private var map: GoogleMap? = null
     private var cameraPosition: CameraPosition? = null
-
+    private lateinit var preferenceManager : PreferenceManager
+    private lateinit var db : FirebaseFirestore
     // The entry point to the Places API.
     private lateinit var placesClient: PlacesClient
 
@@ -77,6 +90,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private var likelyPlaceLatLngs: Array<LatLng?> = arrayOfNulls(0)
 
     // [START maps_current_place_on_create]
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -109,14 +123,57 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         // [END maps_current_place_map_fragment]
         // [END_EXCLUDE]
         addListeners()
+
+        preferenceManager = PreferenceManager(this)
+        db = FirebaseFirestore.getInstance()
+        listenPings()
+
     }
     // [END maps_current_place_on_create]
+
+//    private fun addMarkers()
+//    {
+//        val documentReference = db.collection(Constants.KEY_LOCATIONS).snap
+//        val locationList = mutableListOf<Document>()
+//        var latLang : LatLng
+//        for (document in documentReference.getResult)
+//        {
+//            latLang = LatLng(document.get("latitude") as Double,document.get("longitude") as Double)
+//            map?.addMarker(MarkerOptions().position(latLang))
+//        }
+//    }
+
+    private val eventListener =
+        label@ EventListener { value: QuerySnapshot?, error: FirebaseFirestoreException? ->
+            if (error != null) {
+                return@EventListener
+            }
+
+            if (value != null) {
+                for (documentChange in value.documentChanges) {
+                    if (documentChange.type == DocumentChange.Type.ADDED)
+                    {
+                        var latLang : LatLng
+                        latLang = LatLng(documentChange.document.get("latitude") as Double,documentChange.document.get("longitude") as Double)
+                        map?.addMarker(MarkerOptions().position(latLang))
+                    }
+                }
+            }
+        }
+
+
+    private fun listenPings()
+    {
+        db.collection(Constants.KEY_LOCATIONS)
+            .addSnapshotListener(eventListener)
+    }
 
     private fun raiseToast(string : String)
     {
         Toast.makeText(this,string, Toast.LENGTH_SHORT).show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun addListeners()
     {
        val returnButton = findViewById<FloatingActionButton>(R.id.fabReturnButton)
@@ -130,8 +187,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun alertDanger()
     {
+//        val locationManager = LocationProvider(fusedLocationProviderClient).apply {
+//            UpdateLocationAndNotify()
+//        }
         val database : FirebaseFirestore = FirebaseFirestore.getInstance()
         val locationHashMap : HashMap<String, Any> = HashMap()
 
@@ -141,6 +202,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val east = lastKnownLocation!!.longitude
             locationHashMap["latitude"] = north
             locationHashMap["longitude"] = east
+            locationHashMap["time"]= LocalDateTime.now()
             database.collection("Alert_places").add(locationHashMap)
             raiseToast("We alerted people near you!")
         }

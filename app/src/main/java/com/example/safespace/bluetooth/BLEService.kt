@@ -14,13 +14,11 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.safespace.R
-import com.example.safespace.databinding.ActivityMainBinding
+import com.example.safespace.utilities.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
-import java.sql.Time
 import java.time.LocalDateTime
 import java.util.*
 
@@ -150,6 +148,10 @@ class BLEService : Service() {
             super.onCharacteristicChanged(gatt, characteristic)
             Log.i(TAG, "NEW NOTIFICATION RECEIVED")
 
+//            val locationManager = com.example.safespace.utilities.LocationProvider(
+//                mFusedLocationClient!!
+//            )
+//            locationManager.UpdateLocationAndNotify()
             getLastLocation()
             ////////// PUT IN DIFFERENT CLASS ///////////
             val database : FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -230,6 +232,5 @@ class BLEService : Service() {
         service.createNotificationChannel(chan)
         return channelId
     }
-
 
 }
