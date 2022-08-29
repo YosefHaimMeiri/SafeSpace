@@ -18,7 +18,7 @@ class Constants {
         const val KEY_RECEIVER_ID : String = "recieverId"
         const val KEY_MESSAGE : String = "message"
         const val KEY_TIMESTAMP : String = "timestamp"
-        const val SERVER_KEY: String // ASK FOR THIS IN ORDER TO WORK
+        const val SERVER_KEY: String = "AAAAOyGfL4c:APA91bEkdZUrPAu6AhsfgrEWQAoSkObBNNjjJ5zbBfd6GrS1DWt_iCpoPQzu2FZkSYsJPOOdXDTz51rYrEO2kWETbf7-MrTqlTxC0a67nQ17dKyxN8mr9X4IPtxLSAtpI7rgpZZjiLuP"
 
 
     }
