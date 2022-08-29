@@ -11,7 +11,6 @@ import com.example.safespace.models.User
 import com.example.safespace.utilities.Constants
 import com.example.safespace.utilities.PreferenceManager
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
 
 class UserListActivity : AppCompatActivity(), UserListener  {
     private lateinit var binding : ActivityUserListBinding

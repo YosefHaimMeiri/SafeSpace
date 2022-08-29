@@ -14,6 +14,9 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.example.safespace.activities.MainActivity
+import com.example.safespace.activities.SignInActivity
+import com.example.safespace.utilities.Constants
 import com.example.safespace.utilities.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -23,8 +26,6 @@ import java.time.LocalDateTime
 import java.util.*
 
 class BLEService : Service() {
-
-
 
     var TAG = "Bluetooth Connection"
 
@@ -160,7 +161,8 @@ class BLEService : Service() {
                 val east = mLongitude
                 locationHashMap["latitude"] = north as Double
                 locationHashMap["longitude"] = east as Double
-                locationHashMap["time"]= LocalDateTime.now()
+                locationHashMap["time"] = LocalDateTime.now()
+                locationHashMap["user"] = MainActivity.userName
                 database.collection("Alert_places").add(locationHashMap)
         }
 

@@ -34,9 +34,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.safespace.BuildConfig
 import com.example.safespace.R
-import com.example.safespace.models.ChatMessage
 import com.example.safespace.utilities.Constants
-import com.example.safespace.utilities.LocationProvider
 import com.example.safespace.utilities.PreferenceManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -59,7 +57,6 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firestore.v1.Document
 import java.time.LocalDateTime
 
 /**
@@ -203,6 +200,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             locationHashMap["latitude"] = north
             locationHashMap["longitude"] = east
             locationHashMap["time"]= LocalDateTime.now()
+            locationHashMap["user"] = MainActivity.userName
             database.collection("Alert_places").add(locationHashMap)
             raiseToast("We alerted people near you!")
         }

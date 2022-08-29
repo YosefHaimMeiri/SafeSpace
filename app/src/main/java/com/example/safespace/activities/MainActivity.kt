@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity()
     private lateinit var binding : ActivityMainBinding
     private lateinit var preferenceManager : PreferenceManager
     private var bleService = BLEService()
+
+    companion object
+    {
+        lateinit var userName : String
+    }
     override fun onCreate(savedInstanceState: Bundle?)
     {
         FirebaseFirestore.setLoggingEnabled(true)
@@ -79,6 +84,7 @@ class MainActivity : AppCompatActivity()
         val imageByteArray = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT)
         val imageBitmap = BitmapFactory.decodeByteArray(imageByteArray,0,imageByteArray.size)
         binding.imageProfile.setImageBitmap(imageBitmap)
+        userName = preferenceManager.getString(Constants.KEY_NAME) as String
     }
 
     private fun signOut()

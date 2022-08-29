@@ -3,12 +3,10 @@ package com.example.safespace.activities
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.nfc.Tag
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
-import android.util.Log.d
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -17,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.safespace.databinding.ActivitySignUpBinding
 import com.example.safespace.utilities.Constants
 import com.example.safespace.utilities.PreferenceManager
-import com.google.android.datatransport.runtime.logging.Logging.d
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException

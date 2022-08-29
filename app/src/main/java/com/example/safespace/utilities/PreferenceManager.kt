@@ -2,6 +2,7 @@ package com.example.safespace.utilities
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.safespace.activities.SignInActivity
 
 class PreferenceManager(context: Context) {
 

@@ -90,8 +90,6 @@ class ChatActivity : AppCompatActivity() {
         initializeVariables()
         setListeners()
         listenMessages()
-
-
     }
 
 
