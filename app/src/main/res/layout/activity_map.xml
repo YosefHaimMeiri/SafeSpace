@@ -44,9 +44,12 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_backbutton"
             android:contentDescription="Return"
+            android:backgroundTint="@color/peach"
             app:fabCustomSize="@dimen/_30sdp" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabHelpButton"
+            android:backgroundTint="@color/peach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Help"
@@ -54,11 +57,6 @@
             android:layout_marginLeft="@dimen/_100sdp"
             android:src="@drawable/ic_twotone_pan_tool_24"
             app:fabCustomSize="@dimen/_30sdp" />
-        <View
-            android:id="@+id/verticalLine"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="#aaa" />
 
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

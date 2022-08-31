@@ -34,6 +34,16 @@
         android:tint="@color/peach"/>
 
     <TextView
+        android:id="@+id/disconnectTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageLogOut"
+        app:layout_constraintRight_toRightOf="@id/imageLogOut"
+        app:layout_constraintLeft_toLeftOf="@id/imageLogOut"/>
+
+    <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -59,28 +69,85 @@
         android:background="@drawable/background_content_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageProfile"
-        >
-
-
-        <TextView
-            android:textStyle="bold"
-            android:id="@+id/connectTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Connect to peripheral"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"/>
-
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-123dp">
     </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recentEventRecyclerView"
+        android:layout_width="268dp"
+        android:layout_height="346dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_24sdp"
+        android:layout_marginLeft="@dimen/_24sdp"
+        android:backgroundTint="@color/peach"
         android:src="@drawable/ic_map"
+        />
+
+    <TextView
+        android:id="@+id/mapText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map"
+        android:textStyle="italic"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/mapButton"
+        app:layout_constraintLeft_toLeftOf="@id/mapButton"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_7sdp"
+        />
+    <TextView
+        android:id="@+id/connectText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect SafeSpace"
+        android:textStyle="italic"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/mapButton"
+        app:layout_constraintLeft_toRightOf="@id/mapButton"
+        app:layout_constraintRight_toLeftOf="@id/fabNewChat"
+        android:layout_marginBottom="@dimen/_5sdp"
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/connectTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect to peripheral"
+        android:backgroundTint="@color/peach"
+        app:layout_constraintLeft_toRightOf="@id/mapButton"
+        app:layout_constraintRight_toLeftOf="@id/fabNewChat"
+        app:layout_constraintBottom_toBottomOf="@id/mapButton"
+        android:tint="@color/white"
+        android:src="@drawable/ic_bluetooth"/>
+
+
+    <TextView
+        android:id="@+id/chatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:textStyle="italic"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/fabNewChat"
+        app:layout_constraintRight_toRightOf="@id/fabNewChat"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_7sdp"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabNewChat"
@@ -90,7 +157,7 @@
         android:layout_marginRight="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_24sdp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_baseline_chat_24"
         android:backgroundTint="@color/peach"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -43,20 +43,14 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
+import com.google.firestore.v1.Document
 import java.time.LocalDateTime
 
 /**
@@ -124,21 +118,45 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         preferenceManager = PreferenceManager(this)
         db = FirebaseFirestore.getInstance()
         listenPings()
-
+        addMarkers()
     }
-    // [END maps_current_place_on_create]
 
-//    private fun addMarkers()
-//    {
-//        val documentReference = db.collection(Constants.KEY_LOCATIONS).snap
-//        val locationList = mutableListOf<Document>()
-//        var latLang : LatLng
-//        for (document in documentReference.getResult)
-//        {
-//            latLang = LatLng(document.get("latitude") as Double,document.get("longitude") as Double)
-//            map?.addMarker(MarkerOptions().position(latLang))
-//        }
-//    }
+    override fun onResume() {
+        super.onResume()
+        addMarkers()
+    }
+    private fun addMarkers()
+    {
+        db.collection(Constants.KEY_LOCATIONS).get().addOnCompleteListener {
+            if (it.isSuccessful && it.result != null) {
+                var latLang: LatLng
+                var userName : String
+                var timeHour : String
+                var timeMinute : String
+                var dateDay : String
+                var dateMonth : String
+                var timeMap : HashMap<String,Any>
+                var time : String
+                for (document in it.result) {
+                    latLang = LatLng(
+                        document.get("latitude") as Double,
+                        document.get("longitude") as Double
+                    )
+                    timeMap = document.get("time") as HashMap<String, Any>
+                    timeMinute = timeMap["minute"].toString()
+                    timeHour = timeMap["hour"].toString()
+                    dateDay = timeMap["dayOfMonth"].toString()
+                    dateMonth = timeMap["monthValue"].toString()
+
+                    time = "$timeHour:$timeMinute"
+
+                    userName= document.get("user") as String
+                    map?.addMarker(MarkerOptions().position(latLang).icon(BitmapDescriptorFactory.defaultMarker(
+                        BitmapDescriptorFactory.HUE_ROSE)).title(userName).snippet("$time, $dateDay/$dateMonth").alpha(0.7f))
+                }
+            }
+        }
+    }
 
     private val eventListener =
         label@ EventListener { value: QuerySnapshot?, error: FirebaseFirestoreException? ->
@@ -185,6 +203,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
+
+
     fun alertDanger()
     {
 //        val locationManager = LocationProvider(fusedLocationProviderClient).apply {
@@ -497,14 +517,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         private val TAG = MapActivity::class.java.simpleName
         private const val DEFAULT_ZOOM = 15
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
-
         // Keys for storing activity state.
         // [START maps_current_place_state_keys]
         private const val KEY_CAMERA_POSITION = "camera_position"
         private const val KEY_LOCATION = "location"
         // [END maps_current_place_state_keys]
-
         // Used for selecting the current place.
         private const val M_MAX_ENTRIES = 5
+
     }
 }
